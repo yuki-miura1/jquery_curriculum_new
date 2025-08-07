@@ -21,6 +21,21 @@
     </div>
     <script src="../../common/js/jquery.js"></script>
     <script>
+      //セレクタはクラスを指定しクリックのイベントを定義。
+      //クラスを指定するときクラス名の先頭に.が必要。
+      //.modalに対し.fadeIN()とOut()と書いて()内にミリ秒数を数値で定義し実装。
+      //セレクタで指定したクラスをもつ要素がクリックされたときにイベント発生。
+      //clickと書かれたボタン押すとdesplay:noneで非表示だったmodalが2秒かけてフェードインして表示。
+      //modal内の×押下でmodalが2秒かけてフェードアウトされ非表示へ。
+      $(function() {
+        $('.modal-show').click(function() {
+          $('.modal').fadeIn(2000);
+        });
+
+        $('.modal-close').click(function() {
+          $('.modal').fadeOut(2000);
+        });
+      });
       // 今回やるのはモーダルです。
       // .modal-show をクリックすることで .modal をfadeInさせる。
       // .modal-close をクリックで .modal をfadeOutさせる。

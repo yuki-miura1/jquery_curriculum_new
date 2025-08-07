@@ -47,6 +47,33 @@
     </div>
     <script src="../../common/js/jquery.js"></script>
     <script>
+      $(function() {
+        //メニュータイトル上をホバーすると対応する子のメニューがスライドで表示され、離すとスライドで非表示になる処理。
+        //2つセレクタを1つに結合、メソッドチェーンでイベントを書いて見やすくしてます。
+        $('.menu__list__title, .menu__list__childList')
+          .on('mouseenter', menuDown)
+          .on('mouseleave', menuUp);
+        function menuDown() {
+        //ホバーした要素に最も近いliを取得
+        //さらに.childrenでその子要素を取得。
+        //.stopで動作中のアニメーションを中止させ、下方向にスライドするように子リストを展開している。
+          $(this)
+            .closest('li')
+            .children('.menu__list__childList')
+            .stop()
+            .slideDown();
+        }
+        function menuUp() {
+        //ホバーが外れると処理が実行
+        //menuDownと違うのはslideUpは上方向に展開ではなく上方向に閉じる動作を行う。
+        //この場合だと、ホバー→展開→外れる→展開したものが閉じるになる。
+          $(this)
+            .closest('li')
+            .children('.menu__list__childList')
+            .stop()
+            .slideUp();
+        }
+      });
       // 今回やるのはドロップメニューです。
       // メニューをhoverすると隠れている中のメニューが表示され、メニューから離れると中のメニューが非表示されるプログラムです。
       // 処理は関数化し、hoverしたら用意した関数を呼び出すようにしてください。
