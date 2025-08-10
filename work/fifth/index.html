@@ -88,14 +88,18 @@
         //セレクトボックス内で、選択した言語に関係するリストのみを表示させる処理。
         function selectValue() {
           let value = $('.select').val();//セレクトボックスで選択してる値を取得する関数
-          $('.list li').each(function(index, element) {//リストクラス内の子リストを、ひとつずつ処理を実行させている。
-            let categoryType = $(element).data('category-type');//この変数には、そのタイミングで受け取ったli要素のdata属性の値が格納されている。
-            if(value === 'all' || value === categoryType) {//条件分岐、value値がall又は変数の値と同じだった場合の処理
-              $(element).show();//バリュー値とカテゴリ変数値がTrueの場合その要素で.show()が実行、allの場合は全要素で.show()が実行され全表示になる。
-            } else {
-              $(element).hide();//falseの要素は.hide()を実行
-            }
-          });
+          if(value === 'all') {//バリュー値allの場合だけでリストを表示する処理を追加。
+            $('.list li').show();
+          } else {
+            $('.list li').each(function(index, element) {//リストクラス内の子リストを、ひとつずつ処理を実行させている。
+              let categoryType = $(element).data('category-type');//この変数には、そのタイミングで受け取ったli要素のdata属性の値が格納されている。
+              if(value === categoryType) {
+                $(element).show();//バリュー値とカテゴリ変数値がTrueの場合その要素で.show()が実行。
+              } else {
+                $(element).hide();//falseの要素は.hide()を実行
+              }
+            });
+          }
         }
         $('.select').change(function() {//セレクトボックスの値が変更されたら関数を呼び出す処理。
           selectValue();
