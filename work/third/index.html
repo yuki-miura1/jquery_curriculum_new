@@ -24,6 +24,20 @@
     </div>
     <script src="../../common/js/jquery.js"></script>
     <script>
+      $(function() {
+        //クリックされた.nav liに対応する.contents liだけを表示する処理。
+        //.nav liがクリックされるとクリックされたリストのインデックス番号が取得され変数に格納。
+        //.contents liを対象に、まずaddClass括弧内にある引数のクラスを追加していったん全てを非表示へ。
+        //.eqにてインデックス番号が格納された変数を引数として受け取り、対応する番号を取り出す。
+        //その番号に対応する要素には.addClassで付与されたクラスを削除して表示状態へ戻す。
+        $('.nav li').click(function() {
+          let index = $(this).index();
+          $('.contents li')
+            .addClass('is-hidden')
+            .eq(index)
+            .removeClass('is-hidden');
+        });
+      });
       // 今回やるのはタブメニューです。
       // navの小要素であるliをクリックして、contents内の小要素であるli要素を表示させる。
       // .index() 要素のindexを取得します。
@@ -33,4 +47,3 @@
     </script>
   </body>
 </html>
-
